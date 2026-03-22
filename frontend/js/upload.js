@@ -196,7 +196,7 @@ async function uploadFilesAndProcess() {
     const formData = new FormData();
 
     selectedFiles.forEach((file) => {
-        formData.append("files", file);
+        formData.append("file", file);
     });
 
     const context = document.getElementById("audio-context")?.value?.trim() || "";
@@ -207,7 +207,7 @@ async function uploadFilesAndProcess() {
         formData.append(key, String(value));
     });
 
-    const response = await fetch("/api/upload", {
+    const response = await fetch("http://127.0.0.1:8000/api/upload", {
         method: "POST",
         body: formData,
     });
