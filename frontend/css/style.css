@@ -1,0 +1,221 @@
+:root {
+    --bg-dark: #0B0C10;
+    --bg-darker: #050608;
+    --bg-card: #13151A;
+    --text-primary: #ffffff;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+    --border-soft: rgba(255, 255, 255, 0.05);
+    --border-mid: rgba(255, 255, 255, 0.1);
+    --purple: #8B5CF6;
+    --purple-dark: #7C3AED;
+    --blue: #3B82F6;
+    --indigo: #4F46E5;
+    --green: #10B981;
+    --yellow: #F59E0B;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+/* Original uploaded visual identity */
+.glass-nav {
+    background: rgba(11, 12, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+    background: rgba(19, 21, 26, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.hidden-page {
+    display: none;
+}
+
+/* General polish */
+::selection {
+    background: rgba(139, 92, 246, 0.25);
+    color: #fff;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea,
+input[type="text"] {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+textarea:focus,
+input[type="text"]:focus {
+    outline: none;
+}
+
+/* Navbar states */
+#nav-home,
+#nav-upload {
+    transition: color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
+}
+
+#nav-home:hover,
+#nav-upload:hover {
+    transform: translateY(-1px);
+}
+
+/* Hero section polish */
+#home-view section:first-child h1 {
+    letter-spacing: -0.03em;
+}
+
+#home-view section:first-child p {
+    text-wrap: balance;
+}
+
+/* Card hover polish */
+.bg-brand-card,
+.glass-card {
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.bg-brand-card:hover,
+.glass-card:hover {
+    border-color: rgba(139, 92, 246, 0.14);
+}
+
+/* Feature cards */
+.group .w-12,
+.group .w-11 {
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.group:hover .w-12,
+.group:hover .w-11 {
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer a,
+footer button {
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Soft section separators */
+section {
+    position: relative;
+}
+
+/* Results section base */
+#results-section pre {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* QA answer area */
+#qa-answer:empty::before {
+    content: "Your grounded answer will appear here.";
+    color: var(--text-muted);
+}
+
+/* Scrollbar styling */
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.35);
+    border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.55);
+}
+
+/* Responsive refinements */
+@media (max-width: 1024px) {
+    #home-view section:first-child h1 {
+        line-height: 1.08;
+    }
+}
+
+@media (max-width: 768px) {
+    .glass-nav {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    #home-view section:first-child {
+        padding-top: 4.5rem;
+        padding-bottom: 4.5rem;
+    }
+
+    #home-view section:first-child h1 {
+        font-size: 2.6rem;
+        line-height: 1.08;
+    }
+
+    #home-view section:first-child p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #home-view section:first-child h1 {
+        font-size: 2.15rem;
+    }
+}

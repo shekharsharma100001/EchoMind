@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoMind - Conversation Intelligence</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/upload.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0C10',
+                            darker: '#050608',
+                            card: '#13151A',
+                            purple: '#8B5CF6',
+                            blue: '#3B82F6',
+                            text: '#9CA3AF'
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #3B82F6 100%)',
+                        'upload-gradient': 'radial-gradient(circle at center, rgba(124, 58, 237, 0.10) 0%, rgba(11, 12, 16, 0) 72%)',
+                        'feature-gradient': 'linear-gradient(180deg, rgba(139,92,246,0.08) 0%, rgba(59,130,246,0.03) 100%)'
+                    },
+                    boxShadow: {
+                        'soft-purple': '0 20px 60px rgba(124, 58, 237, 0.18)',
+                        'soft-blue': '0 20px 60px rgba(59, 130, 246, 0.14)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-white antialiased min-h-screen flex flex-col">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3 cursor-pointer" data-page-target="home">
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                        <i class="fa-solid fa-microphone-lines text-white text-xs"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-blue-100 hover:text-white transition-colors">EchoMind</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <button id="nav-home" data-page-target="home" class="px-4 py-2 rounded-lg text-sm font-medium text-white transition-colors hover:bg-white/5">Home</button>
+                    <button id="nav-upload" data-page-target="upload" class="px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white transition-colors hover:bg-white/5">Upload</button>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <button class="w-9 h-9 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button data-page-target="upload" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all shadow-lg shadow-purple-900/20 hover:-translate-y-0.5">
+                        Start Free
+                    </button>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-white/5">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <button data-page-target="home" class="block w-full text-left px-3 py-2 text-base font-medium text-white bg-white/10 rounded-md">Home</button>
+                <button data-page-target="upload" class="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md">Upload</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app-content" class="flex-grow pt-20">
+
+        <!-- HOME VIEW -->
+        <div id="home-view" class="fade-in">
+
+            <!-- HERO -->
+            <section class="relative pt-20 pb-20 overflow-hidden">
+                <div class="absolute inset-0 bg-hero-gradient opacity-[0.03]"></div>
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="absolute -top-10 right-10 w-64 h-64 bg-blue-500/10 rounded-full blur-[110px] pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
+                    <div class="inline-flex items-center justify-center p-3 mb-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10 shadow-xl">
+                        <i class="fa-solid fa-wave-square text-4xl text-gradient"></i>
+                    </div>
+
+                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
+                        Turn Audio, Video, and Documents <br>
+                        into <span class="text-gradient">Actionable Insights</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 font-light">
+                        Upload conversations, meetings, interviews, calls, PDFs, DOCX, or TXT files and let EchoMind transcribe, clean, summarize, analyze sentiment, identify speakers, and answer questions with AI.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+                        <button data-page-target="upload" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/30">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            Start Analyzing
+                        </button>
+                        <button class="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-3.5 rounded-lg font-semibold transition-all">
+                            Watch Demo
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-gray-500 border-t border-white/5 pt-10 max-w-5xl mx-auto">
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bolt text-yellow-500"></i> Fast processing
+                        </div>
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-users text-purple-500"></i> Speaker aware
+                        </div>
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-export text-blue-500"></i> Export ready
+                        </div>
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-brain text-green-500"></i> LLM enhanced
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FEATURE HIGHLIGHTS -->
+            <section class="relative py-8 pb-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="glass-card rounded-2xl p-8 shadow-soft-purple">
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-12 h-12 rounded-xl bg-purple-600/15 flex items-center justify-center">
+                                    <i class="fa-solid fa-file-audio text-purple-400 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">Universal Ingestion</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm leading-7">
+                                Upload audio, video, PDF, DOCX, or TXT. Audio starts with Deepgram transcription. Video is converted to audio first. Text-based files skip transcription and go directly into AI summarization and downstream analysis.
+                            </p>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-8 shadow-soft-blue">
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-12 h-12 rounded-xl bg-blue-600/15 flex items-center justify-center">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-blue-400 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">Transcript Cleanup + Summary</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm leading-7">
+                                Use an LLM to restructure noisy transcripts, fix vague wording using optional conversation context, and generate clear summaries, structured takeaways, and clean conversation-style outputs.
+                            </p>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-8">
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-600/15 flex items-center justify-center">
+                                    <i class="fa-solid fa-comments text-emerald-400 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold">RAG + Q&amp;A</h3>
+                            </div>
+                            <p class="text-gray-400 text-sm leading-7">
+                                Build a searchable knowledge layer over every uploaded conversation or document and ask questions naturally using a RAG pipeline powered by LangChain or LangGraph.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PIPELINE SECTION -->
+            <section class="py-24 bg-brand-darker/70 border-y border-white/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-4">
+                            One AI Pipeline, Multiple Input Types
+                        </h2>
+                        <p class="text-brand-text max-w-3xl mx-auto text-lg">
+                            EchoMind routes each uploaded file through the correct workflow automatically.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-brand-card border border-white/5 rounded-2xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-headphones text-purple-400 text-xl"></i>
+                                <h3 class="text-xl font-semibold text-white">Audio Files</h3>
+                            </div>
+                            <p class="text-sm text-gray-400 leading-7 mb-5">
+                                MP3, WAV, M4A, FLAC, AAC
+                            </p>
+                            <div class="space-y-3 text-sm text-gray-300">
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-purple-400 mt-1"></i><span>Deepgram transcription</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-purple-400 mt-1"></i><span>Speaker diarization</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-purple-400 mt-1"></i><span>LLM cleanup and summary</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-purple-400 mt-1"></i><span>Sentiment + Q&amp;A + exports</span></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-card border border-white/5 rounded-2xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-video text-blue-400 text-xl"></i>
+                                <h3 class="text-xl font-semibold text-white">Video Files</h3>
+                            </div>
+                            <p class="text-sm text-gray-400 leading-7 mb-5">
+                                MP4, MOV, MKV, AVI
+                            </p>
+                            <div class="space-y-3 text-sm text-gray-300">
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-400 mt-1"></i><span>Video to audio extraction</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-400 mt-1"></i><span>Deepgram transcription</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-400 mt-1"></i><span>Same AI pipeline as audio</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-blue-400 mt-1"></i><span>Structured downloadable reports</span></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-card border border-white/5 rounded-2xl p-8">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-file-lines text-emerald-400 text-xl"></i>
+                                <h3 class="text-xl font-semibold text-white">Documents</h3>
+                            </div>
+                            <p class="text-sm text-gray-400 leading-7 mb-5">
+                                TXT, PDF, DOC, DOCX
+                            </p>
+                            <div class="space-y-3 text-sm text-gray-300">
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i><span>Direct text extraction</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i><span>Skip transcription stage</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i><span>Summary, sentiment, and RAG Q&amp;A</span></div>
+                                <div class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i><span>TXT, PDF, DOCX export options</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CORE FEATURES -->
+            <section class="py-24 bg-brand-dark relative z-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 mb-4">
+                            Powerful Features for Conversation Intelligence
+                        </h2>
+                        <p class="text-brand-text max-w-3xl mx-auto text-lg">
+                            Built for real-world meetings, interviews, customer calls, podcasts, internal discussions, and knowledge extraction workflows.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-purple-900/30 transition-colors">
+                                <i class="fa-solid fa-file-arrow-up text-purple-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">Multi-Format Upload</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Accept audio, video, PDF, DOC, DOCX, and TXT in a single workflow.
+                            </p>
+                        </div>
+
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-purple-900/30 transition-colors">
+                                <i class="fa-solid fa-file-lines text-purple-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">Deepgram Transcription</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Fast transcript generation with timestamps and high-quality speech-to-text.
+                            </p>
+                        </div>
+
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-purple-900/30 transition-colors">
+                                <i class="fa-solid fa-user-group text-purple-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">Speaker Diarization</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Organize full transcripts by speaker so you know exactly who said what.
+                            </p>
+                        </div>
+
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-purple-900/30 transition-colors">
+                                <i class="fa-solid fa-wand-magic-sparkles text-purple-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">LLM Refinement</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Restructure unclear transcript text and improve readability using optional context.
+                            </p>
+                        </div>
+
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-blue-900/30 transition-colors">
+                                <i class="fa-solid fa-clipboard-list text-blue-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">Structured Summary</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Get highlights, decisions, action items, key topics, and concise summaries instantly.
+                            </p>
+                        </div>
+
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-blue-900/30 transition-colors">
+                                <i class="fa-solid fa-chart-column text-blue-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">Sentiment Analysis</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Understand conversation tone, positive and negative moments, and overall emotional direction.
+                            </p>
+                        </div>
+
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-emerald-900/30 transition-colors">
+                                <i class="fa-solid fa-database text-emerald-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">RAG Question Answering</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Ask follow-up questions on uploaded content and retrieve grounded answers from your transcript or document.
+                            </p>
+                        </div>
+
+                        <div class="group bg-brand-card p-8 rounded-2xl border border-white/5 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-900/10">
+                            <div class="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-emerald-900/30 transition-colors">
+                                <i class="fa-solid fa-download text-emerald-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-white text-xl font-semibold mb-3">Export Reports</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Download full transcript, summary, and sentiment reports in PDF, DOCX, and TXT.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- USE CASES -->
+            <section class="py-24 bg-feature-gradient border-y border-white/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Built for Real Use Cases</h2>
+                        <p class="text-brand-text max-w-3xl mx-auto text-lg">
+                            From interviews and meetings to client calls and research audio, EchoMind helps convert unstructured conversation into usable knowledge.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="w-11 h-11 rounded-lg bg-purple-600/15 flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-briefcase text-purple-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Business Meetings</h3>
+                            <p class="text-sm text-gray-400 leading-7">
+                                Extract decisions, risks, action points, and summaries from team discussions.
+                            </p>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="w-11 h-11 rounded-lg bg-blue-600/15 flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-headset text-blue-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Customer Calls</h3>
+                            <p class="text-sm text-gray-400 leading-7">
+                                Analyze sentiment, objections, pain points, and key discussion moments.
+                            </p>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="w-11 h-11 rounded-lg bg-emerald-600/15 flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-user-tie text-emerald-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Interviews</h3>
+                            <p class="text-sm text-gray-400 leading-7">
+                                Structure conversations, track responses, and build searchable interview intelligence.
+                            </p>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="w-11 h-11 rounded-lg bg-pink-600/15 flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-graduation-cap text-pink-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Lectures & Research</h3>
+                            <p class="text-sm text-gray-400 leading-7">
+                                Turn recordings and notes into summaries, insights, and question-answerable knowledge bases.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- UPLOAD VIEW -->
+        <div id="upload-view" class="hidden-page fade-in">
+            <section class="relative py-12 md:py-20 bg-brand-dark min-h-[calc(100vh-80px)]">
+                <div class="absolute inset-0 bg-upload-gradient pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Upload and Process Your File</h1>
+                        <p class="text-gray-400 max-w-3xl mx-auto">
+                            Upload audio, video, or document files and let EchoMind run the correct AI pipeline automatically.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+                        <div class="lg:col-span-3 space-y-6">
+                            <div id="drop-zone" class="upload-area rounded-2xl p-10 md:p-16 text-center cursor-pointer group relative overflow-hidden bg-[#0F1014]">
+                                <input type="file" id="file-input" class="hidden" multiple accept=".mp3,.wav,.m4a,.flac,.aac,.mp4,.mov,.mkv,.avi,.txt,.pdf,.doc,.docx">
+
+                                <div id="drop-zone-content" class="relative z-10 flex flex-col items-center justify-center space-y-6">
+                                    <div class="w-20 h-20 rounded-full bg-[#1A1625] flex items-center justify-center group-hover:bg-[#251B35] transition-colors duration-300">
+                                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-purple-500"></i>
+                                    </div>
+
+                                    <div class="space-y-2">
+                                        <h3 class="text-xl font-medium text-white">Drop your files here</h3>
+                                        <p class="text-gray-500 text-sm">or click to browse from your device</p>
+                                    </div>
+
+                                    <button type="button" class="bg-[#1F2937] hover:bg-[#374151] border border-gray-700 text-white px-6 py-2.5 rounded-lg flex items-center gap-2 transition-all mt-4 text-sm font-medium">
+                                        <i class="fa-regular fa-file"></i>
+                                        Browse Files
+                                    </button>
+
+                                    <div class="pt-6 mt-4 border-t border-gray-800 w-full max-w-sm mx-auto">
+                                        <p class="text-xs text-gray-500">
+                                            Supported: MP3, WAV, M4A, FLAC, AAC, MP4, MOV, MKV, AVI, TXT, PDF, DOC, DOCX
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-brand-card border border-white/5 rounded-2xl p-6">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <i class="fa-solid fa-circle-info text-blue-400"></i>
+                                    <h3 class="text-lg font-semibold text-white">Optional Context</h3>
+                                </div>
+                                <p class="text-sm text-gray-400 mb-4">
+                                    Add context to help the LLM restructure transcripts and generate more accurate summaries.
+                                </p>
+                                <textarea id="audio-context" rows="5" class="w-full rounded-xl bg-[#0F1014] border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Example: This is a conversation between a recruiter and a candidate discussing a backend engineering role."></textarea>
+                            </div>
+
+                            <div class="bg-brand-card border border-white/5 rounded-2xl p-6">
+                                <div class="flex items-center gap-3 mb-5">
+                                    <i class="fa-solid fa-sliders text-purple-400"></i>
+                                    <h3 class="text-lg font-semibold text-white">Processing Options</h3>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                    <label class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-pointer">
+                                        <input type="checkbox" class="mt-1 accent-purple-500" checked>
+                                        <span class="text-gray-300">Generate transcript</span>
+                                    </label>
+                                    <label class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-pointer">
+                                        <input type="checkbox" class="mt-1 accent-purple-500" checked>
+                                        <span class="text-gray-300">Refine transcript with LLM</span>
+                                    </label>
+                                    <label class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-pointer">
+                                        <input type="checkbox" class="mt-1 accent-purple-500" checked>
+                                        <span class="text-gray-300">Speaker diarization</span>
+                                    </label>
+                                    <label class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-pointer">
+                                        <input type="checkbox" class="mt-1 accent-purple-500" checked>
+                                        <span class="text-gray-300">Generate summary</span>
+                                    </label>
+                                    <label class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-pointer">
+                                        <input type="checkbox" class="mt-1 accent-purple-500" checked>
+                                        <span class="text-gray-300">Sentiment analysis</span>
+                                    </label>
+                                    <label class="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/5 cursor-pointer">
+                                        <input type="checkbox" class="mt-1 accent-purple-500" checked>
+                                        <span class="text-gray-300">Enable RAG Q&amp;A</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-2 space-y-6">
+                            <div class="bg-brand-card border border-white/5 rounded-2xl p-6 md:p-8 h-full">
+                                <div class="flex items-center gap-3 mb-6">
+                                    <i class="fa-regular fa-circle-question text-gray-400"></i>
+                                    <h3 class="text-lg font-semibold text-white">What happens next?</h3>
+                                </div>
+
+                                <ul class="space-y-6">
+                                    <li class="flex items-start gap-4">
+                                        <div class="mt-1.5 w-2 h-2 rounded-full bg-purple-500 flex-shrink-0 shadow-[0_0_8px_rgba(139,92,246,0.6)]"></div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            Audio is transcribed with Deepgram. Video is first converted to audio. Documents go straight to text extraction.
+                                        </p>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="mt-1.5 w-2 h-2 rounded-full bg-purple-500 flex-shrink-0 shadow-[0_0_8px_rgba(139,92,246,0.6)]"></div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            LLM improves transcript readability, fixes vague wording, and generates structured summaries.
+                                        </p>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="mt-1.5 w-2 h-2 rounded-full bg-purple-500 flex-shrink-0 shadow-[0_0_8px_rgba(139,92,246,0.6)]"></div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            Speaker diarization, sentiment analysis, and RAG indexing are prepared for downstream insights.
+                                        </p>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="mt-1.5 w-2 h-2 rounded-full bg-purple-500 flex-shrink-0 shadow-[0_0_8px_rgba(139,92,246,0.6)]"></div>
+                                        <p class="text-sm text-gray-300 leading-relaxed">
+                                            Export transcript, summary, and sentiment reports in PDF, DOCX, or TXT.
+                                        </p>
+                                    </li>
+                                </ul>
+
+                                <div class="mt-8 p-4 bg-white/5 rounded-xl border border-white/5">
+                                    <div class="flex items-center justify-between text-xs text-gray-500 mb-2">
+                                        <span>Pipeline readiness</span>
+                                        <span>FastAPI + LLM + RAG</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                                        <div class="bg-gradient-to-r from-purple-500 to-blue-500 w-4/5 h-full rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-brand-card border border-white/5 rounded-2xl p-6">
+                                <div class="flex items-center gap-3 mb-5">
+                                    <i class="fa-solid fa-file-export text-emerald-400"></i>
+                                    <h3 class="text-lg font-semibold text-white">Available Outputs</h3>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-3">
+                                    <div class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+                                        <span class="text-sm text-gray-300">Full transcript</span>
+                                        <span class="text-xs text-purple-400">TXT / PDF / DOCX</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+                                        <span class="text-sm text-gray-300">Structured summary</span>
+                                        <span class="text-xs text-blue-400">TXT / PDF / DOCX</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+                                        <span class="text-sm text-gray-300">Sentiment report</span>
+                                        <span class="text-xs text-emerald-400">TXT / PDF / DOCX</span>
+                                    </div>
+                                </div>
+
+                                <button id="start-processing-btn" class="w-full mt-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-3 rounded-xl font-semibold transition-all shadow-lg shadow-purple-900/20">
+                                    Start Processing
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESULT PREVIEW -->
+                    <section id="results-section" class="hidden mt-14">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="bg-brand-card rounded-2xl border border-white/5 p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h2 class="text-xl font-semibold">Full Transcript</h2>
+                                    <span class="text-xs text-gray-500">Speaker-wise output</span>
+                                </div>
+                                <pre id="transcript-output" class="whitespace-pre-wrap text-sm text-gray-300 leading-7"></pre>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-brand-card rounded-2xl border border-white/5 p-6">
+                                    <h2 class="text-xl font-semibold mb-4">Structured Summary</h2>
+                                    <div id="summary-output" class="text-sm text-gray-300 leading-7"></div>
+                                </div>
+
+                                <div class="bg-brand-card rounded-2xl border border-white/5 p-6">
+                                    <h2 class="text-xl font-semibold mb-4">Sentiment Report</h2>
+                                    <div id="sentiment-output" class="text-sm text-gray-300 leading-7"></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-brand-card rounded-2xl border border-white/5 p-6">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <i class="fa-solid fa-circle-question text-purple-400"></i>
+                                    <h2 class="text-xl font-semibold">Ask Questions on Your File</h2>
+                                </div>
+                                <div class="flex flex-col md:flex-row gap-3">
+                                    <input type="text" id="qa-question" class="flex-1 rounded-xl bg-[#0F1014] border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Ask something about the uploaded conversation or document...">
+                                    <button id="ask-question-btn" class="bg-white/10 hover:bg-white/15 border border-white/10 text-white px-5 py-3 rounded-xl text-sm font-medium transition-all">
+                                        Ask
+                                    </button>
+                                </div>
+                                <div id="qa-answer" class="mt-4 text-sm text-gray-300 leading-7"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- CTA -->
+    <section class="relative py-24 bg-hero-gradient overflow-hidden">
+        <div class="absolute top-0 w-full rotate-180 leading-none z-10">
+            <svg class="block w-full h-16 sm:h-24 text-brand-dark" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="currentColor" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96V0H1392C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0H0Z"></path>
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+                Ready to Build Intelligence from Every Conversation?
+            </h2>
+            <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
+                EchoMind combines transcription, LLM reasoning, sentiment analysis, and RAG-based Q&amp;A in one maintainable workflow.
+            </p>
+            <button data-page-target="upload" class="bg-white text-indigo-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-xl shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-3 mx-auto">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                Go to Upload
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050608] border-t border-white/5 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+                            <i class="fa-solid fa-microphone-lines text-white text-xs"></i>
+                        </div>
+                        <span class="font-bold text-xl text-blue-100">EchoMind</span>
+                    </div>
+                    <p class="text-gray-500 text-sm mb-6">
+                        Transform conversations, calls, videos, and documents into searchable, structured intelligence.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="text-white font-semibold mb-4">Navigation</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><button data-page-target="home" class="hover:text-purple-400 transition-colors">Home</button></li>
+                        <li><button data-page-target="upload" class="hover:text-purple-400 transition-colors">Upload</button></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="text-white font-semibold mb-4">Capabilities</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Transcription</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Diarization</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">RAG Q&amp;A</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Sentiment Reports</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="text-white font-semibold mb-4">Exports</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">PDF Reports</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">DOCX Reports</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">TXT Exports</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 text-center text-gray-600 text-sm">
+                <p>&copy; 2026 EchoMind. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/navigation.js"></script>
+    <script src="./js/upload.js"></script>
+    <script src="./js/transcript.js"></script>
+    <script src="./js/summary.js"></script>
+    <script src="./js/qa.js"></script>
+    <script src="./js/download.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
