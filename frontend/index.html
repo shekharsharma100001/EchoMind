@@ -569,6 +569,14 @@
                                 <pre id="transcript-output" class="whitespace-pre-wrap text-sm text-gray-300 leading-7"></pre>
                             </div>
 
+                            <div class="bg-brand-card rounded-2xl border border-white/5 p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h2 class="text-xl font-semibold">Diarized Transcript</h2>
+                                    <span class="text-xs text-gray-500">Speaker-wise conversation</span>
+                                </div>
+                                <pre id="conversation-output" class="whitespace-pre-wrap text-sm text-gray-300 leading-7"></pre>
+                            </div>
+
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 <div class="bg-brand-card rounded-2xl border border-white/5 p-6">
                                     <h2 class="text-xl font-semibold mb-4">Structured Summary</h2>
@@ -676,7 +684,8 @@
             </div>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
     <script src="./js/navigation.js"></script>
     <script src="./js/upload.js"></script>
     <script src="./js/transcript.js"></script>

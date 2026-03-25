@@ -1,0 +1,7 @@
+{
+  "title": "Conversation Summary",
+  "summary": "{\n  \"interviewee\": \"Piyush\",\n  \"company\": \"ThoughtConnect\",\n  \"round\": \"First round\",\n  \"outcome\": \"Cleared first round, but position closed\",\n  \"questions\": [\n    {\n      \"type\": \"DSA\",\n      \"topic\": \"Dynamic Programming\",\n      \"description\": \"Question related to finding elements in increasing and decreasing order (hill pattern). Exact question forgotten; was from LeetCode medium level.\"\n    },\n    {\n      \"type\": \"Technical\",\n      \"topics\": [\"Vector database\", \"RAG pipeline\", \"Back-end development\"],\n      \"details\": \"Rest of the interview focused on vector database and RAG pipeline. Possible Kafka question in back-end, but uncertain. Lang chain and lang graph were not asked.\"\n    }\n  ],\n  \"other_interviews\": [\n    {\n      \"company\": \"dot connect",
+  "key_points": [],
+  "action_items": [],
+  "sentiment_overview": ""
+}

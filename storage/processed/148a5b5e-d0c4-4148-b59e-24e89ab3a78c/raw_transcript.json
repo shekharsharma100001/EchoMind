@@ -1,0 +1,595 @@
+{
+  "metadata": {
+    "transaction_key": "deprecated",
+    "request_id": "0259b743-d3cd-4c52-ad1a-02a511ea0b68",
+    "sha256": "acff493d250ed8e1aae8110e0263e0e8d2f0b9cd4fec51a45afd9d3536d4974b",
+    "created": "2026-03-23 15:05:48.261000+00:00",
+    "duration": 14.064,
+    "channels": 1.0,
+    "models": [
+      "2187e11a-3532-4498-b076-81fa530bdd49"
+    ],
+    "model_info": {
+      "2187e11a-3532-4498-b076-81fa530bdd49": {
+        "name": "general-nova-3",
+        "version": "2025-07-31.0",
+        "arch": "nova-3"
+      }
+    },
+    "summary_info": null,
+    "sentiment_info": null,
+    "topics_info": null,
+    "intents_info": null,
+    "tags": null
+  },
+  "results": {
+    "channels": [
+      {
+        "search": null,
+        "alternatives": [
+          {
+            "transcript": "The best line I've ever heard in my life. Sometimes when you're in a dark place, you think you've been buried, but actually you've been planted.",
+            "confidence": 0.99835926,
+            "words": [
+              {
+                "word": "the",
+                "start": 0.0,
+                "end": 0.39999998,
+                "confidence": 0.7454073,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "The"
+              },
+              {
+                "word": "best",
+                "start": 0.39999998,
+                "end": 1.04,
+                "confidence": 0.9993998,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "best"
+              },
+              {
+                "word": "line",
+                "start": 1.04,
+                "end": 1.52,
+                "confidence": 0.9948397,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "line"
+              },
+              {
+                "word": "i've",
+                "start": 1.52,
+                "end": 2.0,
+                "confidence": 0.9487568,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "I've"
+              },
+              {
+                "word": "ever",
+                "start": 2.0,
+                "end": 2.7199998,
+                "confidence": 0.99834824,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "ever"
+              },
+              {
+                "word": "heard",
+                "start": 2.72,
+                "end": 3.1999998,
+                "confidence": 0.99948406,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "heard"
+              },
+              {
+                "word": "in",
+                "start": 3.1999998,
+                "end": 3.52,
+                "confidence": 0.9993487,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "in"
+              },
+              {
+                "word": "my",
+                "start": 3.52,
+                "end": 3.6799998,
+                "confidence": 0.9998191,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "my"
+              },
+              {
+                "word": "life",
+                "start": 3.6799998,
+                "end": 4.08,
+                "confidence": 0.9806323,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "life."
+              },
+              {
+                "word": "sometimes",
+                "start": 4.08,
+                "end": 4.96,
+                "confidence": 0.99746597,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "Sometimes"
+              },
+              {
+                "word": "when",
+                "start": 5.04,
+                "end": 5.2799997,
+                "confidence": 0.79933757,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "when"
+              },
+              {
+                "word": "you're",
+                "start": 5.2799997,
+                "end": 5.52,
+                "confidence": 0.9923468,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "you're"
+              },
+              {
+                "word": "in",
+                "start": 5.52,
+                "end": 5.68,
+                "confidence": 0.9986619,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "in"
+              },
+              {
+                "word": "a",
+                "start": 5.68,
+                "end": 5.8399997,
+                "confidence": 0.99892753,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "a"
+              },
+              {
+                "word": "dark",
+                "start": 5.8399997,
+                "end": 6.08,
+                "confidence": 0.99963284,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "dark"
+              },
+              {
+                "word": "place",
+                "start": 6.08,
+                "end": 6.8,
+                "confidence": 0.9123863,
+                "speaker": 0,
+                "speaker_confidence": 1.0,
+                "punctuated_word": "place,"
+              },
+              {
+                "word": "you",
+                "start": 8.0,
+                "end": 8.16,
+                "confidence": 0.99835926,
+                "speaker": 0,
+                "speaker_confidence": 0.988786,
+                "punctuated_word": "you"
+              },
+              {
+                "word": "think",
+                "start": 8.16,
+                "end": 8.48,
+                "confidence": 0.99939334,
+                "speaker": 0,
+                "speaker_confidence": 0.988786,
+                "punctuated_word": "think"
+              },
+              {
+                "word": "you've",
+                "start": 8.48,
+                "end": 8.8,
+                "confidence": 0.99916625,
+                "speaker": 0,
+                "speaker_confidence": 0.988786,
+                "punctuated_word": "you've"
+              },
+              {
+                "word": "been",
+                "start": 8.8,
+                "end": 8.96,
+                "confidence": 0.9994423,
+                "speaker": 0,
+                "speaker_confidence": 0.988786,
+                "punctuated_word": "been"
+              },
+              {
+                "word": "buried",
+                "start": 8.96,
+                "end": 9.759999,
+                "confidence": 0.8531407,
+                "speaker": 0,
+                "speaker_confidence": 0.988786,
+                "punctuated_word": "buried,"
+              },
+              {
+                "word": "but",
+                "start": 10.8,
+                "end": 10.96,
+                "confidence": 0.9991443,
+                "speaker": 0,
+                "speaker_confidence": 0.988786,
+                "punctuated_word": "but"
+              },
+              {
+                "word": "actually",
+                "start": 10.96,
+                "end": 11.759999,
+                "confidence": 0.9474403,
+                "speaker": 0,
+                "speaker_confidence": 0.988786,
+                "punctuated_word": "actually"
+              },
+              {
+                "word": "you've",
+                "start": 12.559999,
+                "end": 13.04,
+                "confidence": 0.7629981,
+                "speaker": 0,
+                "speaker_confidence": 0.89521766,
+                "punctuated_word": "you've"
+              },
+              {
+                "word": "been",
+                "start": 13.04,
+                "end": 13.2,
+                "confidence": 0.9995902,
+                "speaker": 0,
+                "speaker_confidence": 0.89521766,
+                "punctuated_word": "been"
+              },
+              {
+                "word": "planted",
+                "start": 13.2,
+                "end": 13.679999,
+                "confidence": 0.9916712,
+                "speaker": 0,
+                "speaker_confidence": 0.89521766,
+                "punctuated_word": "planted."
+              }
+            ],
+            "paragraphs": {
+              "transcript": "\nSpeaker 0: The best line I've ever heard in my life. Sometimes when you're in a dark place, you think you've been buried, but actually you've been planted.",
+              "paragraphs": [
+                {
+                  "sentences": [
+                    {
+                      "text": "The best line I've ever heard in my life.",
+                      "start": 0.0,
+                      "end": 4.08
+                    },
+                    {
+                      "text": "Sometimes when you're in a dark place, you think you've been buried, but actually you've been planted.",
+                      "start": 4.08,
+                      "end": 13.679999
+                    }
+                  ],
+                  "speaker": 0.0,
+                  "num_words": 26.0,
+                  "start": 0.0,
+                  "end": 13.679999
+                }
+              ]
+            },
+            "summaries": null,
+            "topics": null
+          }
+        ],
+        "detected_language": null
+      }
+    ],
+    "utterances": [
+      {
+        "start": 0.0,
+        "end": 4.96,
+        "confidence": 0.96635026,
+        "channel": 0.0,
+        "transcript": "The best line I've ever heard in my life. Sometimes",
+        "words": [
+          {
+            "word": "the",
+            "start": 0.0,
+            "end": 0.39999998,
+            "confidence": 0.7454073,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "The"
+          },
+          {
+            "word": "best",
+            "start": 0.39999998,
+            "end": 1.04,
+            "confidence": 0.9993998,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "best"
+          },
+          {
+            "word": "line",
+            "start": 1.04,
+            "end": 1.52,
+            "confidence": 0.9948397,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "line"
+          },
+          {
+            "word": "i've",
+            "start": 1.52,
+            "end": 2.0,
+            "confidence": 0.9487568,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "I've"
+          },
+          {
+            "word": "ever",
+            "start": 2.0,
+            "end": 2.7199998,
+            "confidence": 0.99834824,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "ever"
+          },
+          {
+            "word": "heard",
+            "start": 2.72,
+            "end": 3.1999998,
+            "confidence": 0.99948406,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "heard"
+          },
+          {
+            "word": "in",
+            "start": 3.1999998,
+            "end": 3.52,
+            "confidence": 0.9993487,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "in"
+          },
+          {
+            "word": "my",
+            "start": 3.52,
+            "end": 3.6799998,
+            "confidence": 0.9998191,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "my"
+          },
+          {
+            "word": "life",
+            "start": 3.6799998,
+            "end": 4.08,
+            "confidence": 0.9806323,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "life."
+          },
+          {
+            "word": "sometimes",
+            "start": 4.08,
+            "end": 4.96,
+            "confidence": 0.99746597,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "Sometimes"
+          }
+        ],
+        "speaker": 0.0,
+        "id": "ef2e4873-425f-4ace-94f0-efd1d9e6aa3e"
+      },
+      {
+        "start": 5.04,
+        "end": 6.8,
+        "confidence": 0.9502155,
+        "channel": 0.0,
+        "transcript": "when you're in a dark place,",
+        "words": [
+          {
+            "word": "when",
+            "start": 5.04,
+            "end": 5.2799997,
+            "confidence": 0.79933757,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "when"
+          },
+          {
+            "word": "you're",
+            "start": 5.2799997,
+            "end": 5.52,
+            "confidence": 0.9923468,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "you're"
+          },
+          {
+            "word": "in",
+            "start": 5.52,
+            "end": 5.68,
+            "confidence": 0.9986619,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "in"
+          },
+          {
+            "word": "a",
+            "start": 5.68,
+            "end": 5.8399997,
+            "confidence": 0.99892753,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "a"
+          },
+          {
+            "word": "dark",
+            "start": 5.8399997,
+            "end": 6.08,
+            "confidence": 0.99963284,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "dark"
+          },
+          {
+            "word": "place",
+            "start": 6.08,
+            "end": 6.8,
+            "confidence": 0.9123863,
+            "speaker": 0.0,
+            "speaker_confidence": 1.0,
+            "punctuated_word": "place,"
+          }
+        ],
+        "speaker": 0.0,
+        "id": "072d2dde-881a-4820-ba67-cee50d89bf8c"
+      },
+      {
+        "start": 8.0,
+        "end": 9.759999,
+        "confidence": 0.9699004,
+        "channel": 0.0,
+        "transcript": "you think you've been buried,",
+        "words": [
+          {
+            "word": "you",
+            "start": 8.0,
+            "end": 8.16,
+            "confidence": 0.99835926,
+            "speaker": 0.0,
+            "speaker_confidence": 0.988786,
+            "punctuated_word": "you"
+          },
+          {
+            "word": "think",
+            "start": 8.16,
+            "end": 8.48,
+            "confidence": 0.99939334,
+            "speaker": 0.0,
+            "speaker_confidence": 0.988786,
+            "punctuated_word": "think"
+          },
+          {
+            "word": "you've",
+            "start": 8.48,
+            "end": 8.8,
+            "confidence": 0.99916625,
+            "speaker": 0.0,
+            "speaker_confidence": 0.988786,
+            "punctuated_word": "you've"
+          },
+          {
+            "word": "been",
+            "start": 8.8,
+            "end": 8.96,
+            "confidence": 0.9994423,
+            "speaker": 0.0,
+            "speaker_confidence": 0.988786,
+            "punctuated_word": "been"
+          },
+          {
+            "word": "buried",
+            "start": 8.96,
+            "end": 9.759999,
+            "confidence": 0.8531407,
+            "speaker": 0.0,
+            "speaker_confidence": 0.988786,
+            "punctuated_word": "buried,"
+          }
+        ],
+        "speaker": 0.0,
+        "id": "f8b62268-de6f-431c-aa2b-8a319229c709"
+      },
+      {
+        "start": 10.8,
+        "end": 11.759999,
+        "confidence": 0.97329235,
+        "channel": 0.0,
+        "transcript": "but actually",
+        "words": [
+          {
+            "word": "but",
+            "start": 10.8,
+            "end": 10.96,
+            "confidence": 0.9991443,
+            "speaker": 0.0,
+            "speaker_confidence": 0.988786,
+            "punctuated_word": "but"
+          },
+          {
+            "word": "actually",
+            "start": 10.96,
+            "end": 11.759999,
+            "confidence": 0.9474403,
+            "speaker": 0.0,
+            "speaker_confidence": 0.988786,
+            "punctuated_word": "actually"
+          }
+        ],
+        "speaker": 0.0,
+        "id": "08a9cbd3-c3f9-42e6-9322-b8e604d00fe8"
+      },
+      {
+        "start": 12.559999,
+        "end": 13.679999,
+        "confidence": 0.9180865,
+        "channel": 0.0,
+        "transcript": "you've been planted.",
+        "words": [
+          {
+            "word": "you've",
+            "start": 12.559999,
+            "end": 13.04,
+            "confidence": 0.7629981,
+            "speaker": 0.0,
+            "speaker_confidence": 0.89521766,
+            "punctuated_word": "you've"
+          },
+          {
+            "word": "been",
+            "start": 13.04,
+            "end": 13.2,
+            "confidence": 0.9995902,
+            "speaker": 0.0,
+            "speaker_confidence": 0.89521766,
+            "punctuated_word": "been"
+          },
+          {
+            "word": "planted",
+            "start": 13.2,
+            "end": 13.679999,
+            "confidence": 0.9916712,
+            "speaker": 0.0,
+            "speaker_confidence": 0.89521766,
+            "punctuated_word": "planted."
+          }
+        ],
+        "speaker": 0.0,
+        "id": "6d970fe2-2ba8-46de-a67a-77f33d32727b"
+      }
+    ],
+    "summary": null,
+    "topics": null,
+    "intents": null,
+    "sentiments": null
+  }
+}

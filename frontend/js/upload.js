@@ -196,7 +196,7 @@ async function uploadFilesAndProcess() {
     const formData = new FormData();
 
     selectedFiles.forEach((file) => {
-        formData.append("file", file);
+        formData.append("file", selectedFiles[0]);
     });
 
     const context = document.getElementById("audio-context")?.value?.trim() || "";

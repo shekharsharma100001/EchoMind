@@ -1,6 +1,7 @@
 import shutil
 import uuid
 from pathlib import Path
+
 from fastapi import UploadFile
 
 from app.config import (
@@ -10,6 +11,7 @@ from app.config import (
     ALLOWED_DOCUMENT_EXTENSIONS,
     MAX_FILE_SIZE_BYTES,
     UPLOAD_DIR,
+    PROCESSED_DIR,
 )
 
 
@@ -51,11 +53,15 @@ async def save_uploaded_file(file: UploadFile) -> dict:
 
     file_id = str(uuid.uuid4())
     extension = get_file_extension(file.filename)
+    file_type = detect_file_type(file.filename)
 
-    target_dir = UPLOAD_DIR / file_id
-    target_dir.mkdir(parents=True, exist_ok=True)
+    upload_dir = UPLOAD_DIR / file_id
+    processed_dir = PROCESSED_DIR / file_id
 
-    saved_path = target_dir / f"original{extension}"
+    upload_dir.mkdir(parents=True, exist_ok=True)
+    processed_dir.mkdir(parents=True, exist_ok=True)
+
+    saved_path = upload_dir / f"original{extension}"
 
     with saved_path.open("wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
@@ -64,6 +70,8 @@ async def save_uploaded_file(file: UploadFile) -> dict:
         "file_id": file_id,
         "original_filename": file.filename,
         "saved_path": str(saved_path),
-        "file_type": detect_file_type(file.filename),
+        "file_type": file_type,
         "extension": extension,
+        "upload_dir": str(upload_dir),
+        "processed_dir": str(processed_dir),
     }

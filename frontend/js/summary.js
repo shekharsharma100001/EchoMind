@@ -27,7 +27,23 @@ function renderSummary(summary) {
     const summaryOutput = document.getElementById("summary-output");
     if (!summaryOutput) return;
 
-    summaryOutput.textContent = formatSummary(summary);
+    if (!summary) {
+        summaryOutput.innerHTML = `<p class="text-gray-400">No summary available.</p>`;
+        return;
+    }
+
+    let summaryText = "";
+
+    if (typeof summary === "string") {
+        summaryText = summary;
+    } else if (typeof summary === "object") {
+        summaryText = summary.summary || JSON.stringify(summary, null, 2);
+    } else {
+        summaryText = String(summary);
+    }
+
+    const html = marked.parse(summaryText);
+    summaryOutput.innerHTML = DOMPurify.sanitize(html);
 }
 
 function formatSentiment(sentiment) {

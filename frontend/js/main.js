@@ -21,7 +21,10 @@ function setProcessingState(isLoading) {
 }
 
 function populateFromResponse(data) {
-    renderTranscript(data.transcript || data.cleaned_transcript || data.full_transcript || "");
+    console.log("CONVERSATION DATA:", data.conversation);
+
+    renderTranscript(data.cleaned_transcript || data.transcript || data.full_transcript || "");
+    renderConversation(data.conversation || "");
     renderSummary(data.summary || data.structured_summary || "");
     renderSentiment(data.sentiment || data.sentiment_report || "");
 }

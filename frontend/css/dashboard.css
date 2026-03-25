@@ -12,20 +12,78 @@
 }
 
 #transcript-output,
+#conversation-output,
 #summary-output,
 #sentiment-output,
 #qa-answer {
     word-break: break-word;
 }
 
-#transcript-output {
+#transcript-output,
+#conversation-output {
     max-height: 460px;
     overflow-y: auto;
     padding-right: 0.25rem;
     line-height: 1.8;
 }
 
-#summary-output,
+#summary-output {
+    line-height: 1.8;
+    color: #d1d5db;
+}
+
+#summary-output h1,
+#summary-output h2,
+#summary-output h3,
+#summary-output h4 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+#summary-output p {
+    margin-bottom: 0.9rem;
+}
+
+#summary-output ul,
+#summary-output ol {
+    margin-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+#summary-output li {
+    margin-bottom: 0.4rem;
+}
+
+#summary-output table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+#summary-output th,
+#summary-output td {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+#summary-output th {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+#summary-output strong {
+    color: #ffffff;
+}
+
+#summary-output hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 1rem 0;
+}
 #sentiment-output {
     min-height: 180px;
     line-height: 1.8;
@@ -77,8 +135,9 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-    #transcript-output {
-        max-height: 340px;
+    #transcript-output,
+    #conversation-output {
+    max-height: 340px;
     }
 
     #summary-output,

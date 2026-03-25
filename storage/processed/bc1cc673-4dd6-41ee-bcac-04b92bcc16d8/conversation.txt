@@ -1,0 +1,42 @@
+Speaker 1: Hello? Hello. Hi, Piyush. This is Shekhar from the Scalars content team. Yeah. Hi. Is this a good time to speak regarding your interview experience at ThoughtConnect?
+Speaker 2: So I've given the interview. I think I've also cleared the first round. Mhmm. But
+Speaker 2: that position is closed. Position is closed.
+Speaker 1: Yeah.
+Speaker 1: Okay. Actually, we didn't receive any response from the company.
+Speaker 2: No. You got my my Scalar profile got updated. In Scalar career, it it got updated. Okay. Okay. Okay. K. That the position is closed. Although my first round was cleared, but still So
+Speaker 1: what did they ask in round one off interview?
+Speaker 2: Round one, they asked a DSA question
+Speaker 2: related to DP.
+Speaker 1: Okay. So what is the question or problem statement? Portion was
+Speaker 2: I forgot the question.
+Speaker 1: End of idea around it.
+Speaker 2: So the question was something like
+Speaker 2: to find the peak
+Speaker 2: Peak element? No. No. Peak element. No. It was something related to peak only. Yeah. But it it was DP involved. I have solved that question, but I forgot. Okay. Let
+Speaker 2: me let me recall.
+Speaker 1: Have you written that question in Notepad
+Speaker 2: or somewhere else? Notepad is not it was question on the Leetcore, actually. Okay. It might be yeah. It was from Leetcore medium level.
+Speaker 2: It it was something like to find the
+Speaker 2: of find all the number of element Mhmm.
+Speaker 2: In the increasing and the decreasing order in the array. Okay. Okay. For example, it is something like hill. Mhmm. If you place the element, it is formed something like hill. So I have to find that maximum hill,
+Speaker 2: that element will be there.
+Speaker 1: Alright.
+Speaker 2: So there was only single DSA question? One DSA question and rest were were related to vector database
+Speaker 2: Mhmm. Rag pipeline.
+Speaker 1: Okay.
+Speaker 2: Mhmm. Then lang graph, lang chain was not asked.
+Speaker 2: Yeah. These two were the major thing, vector database
+Speaker 2: and rag.
+Speaker 1: Okay.
+Speaker 1: And was there any other question from Janii?
+Speaker 2: January is Ag or
+Speaker 2: Vector only.
+Speaker 2: And I I I don't think any question was it. And some question was so the the interviewer more focused on back end development rather than a January.
+Speaker 1: Okay.
+Speaker 1: So what were the question from back end?
+Speaker 2: Back end, there was question related to Kafka also, I think. Okay. If I'm not wrong. Actually, I've given interview, I think, two, three weeks back, some of the things. I Kafka was in dot connect or in some other company. Kafka, I'm not sure of sorry of. Okay. Okay.
+Speaker 1: And do you have any upcoming interview opportunities lined up? No. Not right now.
+Speaker 1: Okay. Piyush, when you're going to appear for any of the interview, please make sure to document your complete interview experience. Anywhere, even on Notepad, Word, or Notion, whatever suits for you. Okay. Sure.
+Speaker 2: So you will help us analyze the preparation gap and get Yeah. So from Scalar, I've appeared in two two company. Yeah. One was dot connect, and other one was resolve dot ai. Mhmm. So I have cleared both of the interview for the first round, but both of the position got closed. Okay. Okay.
+Speaker 1: Okay.
+Speaker 1: Thank you, Okay. Thank you.
