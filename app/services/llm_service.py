@@ -5,6 +5,7 @@ from app.config import (
     OPENROUTER_API_KEY,
     OPENROUTER_MODEL,
     OPENROUTER_SUMMARY_MODEL,
+    OPENROUTER_RAG_MODEL
 )
 
 
@@ -153,3 +154,61 @@ Transcript:
             "action_items": [],
             "sentiment_overview": "",
         }
+    
+
+
+def answer_question_with_rag_context(question: str, retrieved_chunks: list[dict]) -> str:
+    client = get_openrouter_client()
+
+    safe_question = safe_text(question)
+
+    if not safe_question:
+        return "Question is empty."
+
+    if not retrieved_chunks:
+        return "I could not find relevant information in the processed file."
+
+    context_parts = []
+    for chunk in retrieved_chunks:
+        chunk_id = chunk.get("chunk_id", "unknown")
+        text = safe_text(chunk.get("text", ""))
+        if text:
+            context_parts.append(f"[Chunk {chunk_id}]\n{text}")
+
+    combined_context = "\n\n".join(context_parts)
+
+    prompt = f"""
+Answer the user's question using only the provided context.
+
+Rules:
+1. Answer only from the context below.
+2. Do not use outside knowledge.
+3. If the answer is not present in the context, say: "The answer is not available in the provided file."
+4. Keep the answer clear and concise.
+5. If useful, mention the relevant point directly.
+
+Context:
+{combined_context}
+
+Question:
+{safe_question}
+""".strip()
+
+    response = client.chat.completions.create(
+        model=OPENROUTER_RAG_MODEL,
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a grounded question-answering assistant. Answer only from the supplied context."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        temperature=0.2,
+        max_tokens=500,
+    )
+
+    content = response.choices[0].message.content if response.choices else ""
+    return safe_text(content) or "The answer is not available in the provided file."

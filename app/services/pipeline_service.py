@@ -14,6 +14,7 @@ from app.services.llm_service import (
     clean_transcript_with_llm,
     generate_structured_summary,
 )
+from app.services.rag_service import build_and_save_index
 
 
 def _save_json(data: dict, path: str) -> None:
@@ -96,6 +97,11 @@ def process_audio_file(file_info: dict) -> dict:
     summary_json_path = processed_dir / "structured_summary.json"
     _save_structured_json(structured_summary, str(summary_json_path))
 
+    rag_result = build_and_save_index(
+    text=cleaned_transcript,
+    processed_dir=str(processed_dir)
+    )
+
     return {
         "pipeline": "audio",
         "transcript": transcript,
@@ -108,7 +114,11 @@ def process_audio_file(file_info: dict) -> dict:
         "cleaned_transcript_path": str(cleaned_transcript_txt_path),
         "structured_summary_path": str(summary_json_path),
         "conversation": conversation_text,
-        "conversation_path": str(conversation_path)
+        "conversation_path": str(conversation_path),
+        "rag_ready": rag_result.get("rag_ready", False),
+        "chunk_count": rag_result.get("chunk_count", 0),
+        "chunks_path": rag_result.get("chunks_path"),
+        "index_path": rag_result.get("index_path")
     }
 
 
@@ -159,6 +169,11 @@ def process_video_file(file_info: dict) -> dict:
     summary_json_path = processed_dir / "structured_summary.json"
     _save_structured_json(structured_summary, str(summary_json_path))
 
+    rag_result = build_and_save_index(
+    text=cleaned_transcript,
+    processed_dir=str(processed_dir)
+    )
+
     return {
         "pipeline": "video",
         "extracted_audio_path": extracted_audio_path,
@@ -172,7 +187,11 @@ def process_video_file(file_info: dict) -> dict:
         "cleaned_transcript_path": str(cleaned_transcript_txt_path),
         "structured_summary_path": str(summary_json_path),
         "conversation": conversation_text,
-        "conversation_path": str(conversation_path)
+        "conversation_path": str(conversation_path),
+        "rag_ready": rag_result.get("rag_ready", False),
+        "chunk_count": rag_result.get("chunk_count", 0),
+        "chunks_path": rag_result.get("chunks_path"),
+        "index_path": rag_result.get("index_path")
     }
 
 
@@ -202,6 +221,11 @@ def process_document_file(file_info: dict) -> dict:
     _save_text(cleaned_transcript, str(cleaned_transcript_txt_path))
     _save_structured_json(structured_summary, str(summary_json_path))
 
+    rag_result = build_and_save_index(
+    text=cleaned_transcript,
+    processed_dir=str(processed_dir)
+    )
+
     return {
         "pipeline": "document",
         "transcript": extracted_text,
@@ -211,7 +235,11 @@ def process_document_file(file_info: dict) -> dict:
         "needs_cleanup": needs_cleanup,
         "structured_summary": structured_summary,
         "cleaned_transcript_path": str(cleaned_transcript_txt_path),
-        "structured_summary_path": str(summary_json_path)
+        "structured_summary_path": str(summary_json_path),
+        "rag_ready": rag_result.get("rag_ready", False),
+        "chunk_count": rag_result.get("chunk_count", 0),
+        "chunks_path": rag_result.get("chunks_path"),
+        "index_path": rag_result.get("index_path")
     }
 
 

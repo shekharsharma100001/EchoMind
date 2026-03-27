@@ -7,12 +7,14 @@ async function askQuestion(question, fileId = currentFileId) {
         throw new Error("No processed file available for Q&A.");
     }
 
-    const response = await fetch(`/api/qa/${fileId}`, {
+    const response = await fetch(`http://127.0.0.1:8000/api/qa/${fileId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question: question.trim() }),
+        body: JSON.stringify({
+            question: question.trim(),
+        }),
     });
 
     if (!response.ok) {
@@ -21,7 +23,7 @@ async function askQuestion(question, fileId = currentFileId) {
             const errorData = await response.json();
             message = errorData.detail || errorData.message || message;
         } catch (_) {
-            // ignore parse failure
+            // ignore
         }
         throw new Error(message);
     }
@@ -41,7 +43,9 @@ function renderQaAnswer(answerData) {
     const answer =
         answerData.answer ||
         answerData.response ||
-        (typeof answerData === "string" ? answerData : JSON.stringify(answerData, null, 2));
+        (typeof answerData === "string"
+            ? answerData
+            : JSON.stringify(answerData, null, 2));
 
     qaAnswer.textContent = answer;
 }

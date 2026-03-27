@@ -34,3 +34,17 @@ OPENROUTER_SUMMARY_MODEL = os.getenv(
     "OPENROUTER_SUMMARY_MODEL",
     "nvidia/nemotron-3-super-120b-a12b:free"
 )
+
+OPENROUTER_RAG_MODEL = os.getenv(
+    "OPENROUTER_RAG_MODEL",
+    "stepfun/step-3.5-flash:free"
+)
+
+EMBEDDING_MODEL_NAME = os.getenv(
+    "EMBEDDING_MODEL_NAME",
+    "sentence-transformers/all-MiniLM-L6-v2"
+)
+
+RAG_CHUNK_SIZE = int(os.getenv("RAG_CHUNK_SIZE", "800"))
+RAG_CHUNK_OVERLAP = int(os.getenv("RAG_CHUNK_OVERLAP", "150"))
+RAG_TOP_K = int(os.getenv("RAG_TOP_K", "4"))

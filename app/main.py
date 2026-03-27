@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes_upload import router as upload_router
 from dotenv import load_dotenv
+from app.api.routes_qa import router as qa_router
+
 load_dotenv()
 
 app = FastAPI(title="EchoMind API", version="1.0.0")
@@ -16,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(upload_router)
+app.include_router(qa_router)
 
 
 @app.get("/")

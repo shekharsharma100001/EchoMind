@@ -27,6 +27,11 @@ function populateFromResponse(data) {
     renderConversation(data.conversation || "");
     renderSummary(data.summary || data.structured_summary || "");
     renderSentiment(data.sentiment || data.sentiment_report || "");
+
+    const qaAnswer = document.getElementById("qa-answer");
+    if (qaAnswer) {
+        qaAnswer.textContent = "";
+}
 }
 
 function bindProcessingEvent() {
