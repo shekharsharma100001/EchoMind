@@ -13,3 +13,4 @@ Authlib
 requests
 Flask-Mail
 gunicorn
+numpy
