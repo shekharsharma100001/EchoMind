@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% block title %}Team & Mission - EchoMind{% endblock %}
+{% block content %}
+<section class="py-20 relative bg-brand-light dark:bg-brand-dark transition-colors min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Team EchoMind</h1>
+            <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+                EchoMind was built with a singular vision: turning the noise of endless meetings into clear, searchable, and actionable intelligence.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+            <!-- Mission & Vision -->
+            <div class="space-y-8">
+                <div class="bg-white dark:bg-brand-card p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        Our Mission
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        To build the most accessible, privacy-centric workspace intelligence platform. By leveraging Artificial Intelligence, we empower professionals to unlock the hidden value in their everyday conversations without sacrificing data sovereignty.
+                    </p>
+                </div>
+                
+                <div class="bg-white dark:bg-brand-card p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        Our Vision
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                        A future where no meeting note is lost, no action item forgotten, and every professional can effortlessly recall any detail from past projects using semantic search instead of manual note-taking.
+                    </p>
+                </div>
+                
+            </div>
+            
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl h-96 border border-white/10 group">
+                <img src="/static/profile_pictures/Team.png" alt="EchoMind Team" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-8">
+                    <h3 class="text-3xl font-bold text-white">Innovation in Intelligence</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meet the Guides -->
+        <div class="text-center mb-12 mt-20">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white">Meet Our Mentors</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto mb-24">
+    
+    <!-- Mentor 1 -->
+    <div class="bg-white dark:bg-brand-card rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+        <div class="h-64 relative overflow-hidden">
+            <img src="/static/profile_pictures/rk.png" alt="Dr. R.K. Singh" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <span class="text-white text-xs font-medium">Project Guide</span>
+            </div>
+        </div>
+        <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">Dr. R.K. Singh</h3>
+            <p class="text-emerald-600 dark:text-emerald-400 font-medium text-sm mb-4">
+                Our Project Guide
+            </p>
+            <p class="text-gray-500 dark:text-gray-400 text-xs">
+                Professor & CoE at KNIT Sultanpur. Guiding the project architecture, research direction, and technical validation.
+            </p>
+        </div>
+    </div>
+
+    <!-- Mentor 2 -->
+    <div class="bg-white dark:bg-brand-card rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+        <div class="h-64 relative overflow-hidden">
+            <img src="/static/profile_pictures/sonam.png" alt="Prof. Sonam Arya" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <span class="text-white text-xs font-medium">Project Mentor</span>
+            </div>
+        </div>
+        <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">Prof. Sonam Arya</h3>
+            <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-4">
+                Project Mentor
+            </p>
+            <p class="text-gray-500 dark:text-gray-400 text-xs">
+                Assistant Professor at KNIT Sultanpur (Guest Faculty). Mentoring development workflow, documentation, and system design.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+        <!-- Meet the Team -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white">Meet the Engineers</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Member 1 -->
+            <div class="bg-white dark:bg-brand-card rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="/static/profile_pictures/Aakash.jpeg" alt="Aakash Hussain" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">Aakash Hussain</h3>
+                    <p class="text-indigo-600 dark:text-indigo-400 font-medium text-sm mb-4">Frontend Developer</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs">Building seamless, responsive Tailwind interactions and complex Chart.js visual metrics.</p>
+                </div>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="bg-white dark:bg-brand-card rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="/static/profile_pictures/Shekhar.jpeg" alt="Shekhar Sharma" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">Shekhar Sharma</h3>
+                    <p class="text-blue-600 dark:text-blue-400 font-medium text-sm mb-4">Lead AI Engineer</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs">Architecting the LLM pipelines and embedding workflows, integrating with frontend and backend.</p>
+                </div>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="bg-white dark:bg-brand-card rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="/static/profile_pictures/Shivanshu.jpeg" alt="Shivanshu Srivastava" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">Shivanshu Srivastava</h3>
+                    <p class="text-amber-600 dark:text-amber-400 font-medium text-sm mb-4">ML Engineer</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs">Building sentiment analysis dashboards for real-time insights and , implementing RAG.</p>
+                </div>
+            </div>
+
+            <!-- Member 4 -->
+            <div class="bg-white dark:bg-brand-card rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                <div class="h-56 relative overflow-hidden">
+                    <img src="/static/profile_pictures/Satyam.jpeg" alt="Satyam Mishra" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-1">Satyam Mishra</h3>
+                    <p class="text-emerald-600 dark:text-emerald-400 font-medium text-sm mb-4">Cloud Engineer</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs">Optimizing cloud infra, managing deployment pipelines, databases, and enhancing system reliability.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}Upload - EchoMind{% endblock %}
+{% block content %}
+<section class="py-12 md:py-20 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Upload and Process</h1>
+            <p class="text-gray-600 dark:text-gray-400">Upload an audio, video, or document (PDF, TXT, DOCX).</p>
+        </div>
+
+        <div class="bg-white dark:bg-brand-card p-10 rounded-2xl border border-gray-200 dark:border-white/5 shadow-2xl">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div id="drop-zone" class="border-2 border-dashed border-gray-400 dark:border-gray-600 hover:border-purple-500 rounded-2xl p-16 text-center cursor-pointer bg-gray-50 dark:bg-[#0F1014] transition-colors">
+                    <input type="file" id="fileInput" name="file" class="hidden" accept=".mp3,.wav,.m4a,.flac,.aac,.mp4,.mov,.mkv,.avi,.txt,.pdf,.doc,.docx" required>
+                    
+                    <div class="flex flex-col items-center space-y-4">
+                        <i class="fa-solid fa-cloud-arrow-up text-4xl text-purple-500"></i>
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-white" id="file-label">Click to select file</h3>
+                        <p class="text-gray-500 text-sm">Supported formats: Audio, Video, TXT, PDF, DOCX</p>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Upload Context / Prompt for Conversation <span class="text-xs text-gray-400 font-normal">(Optional)</span></label>
+                    <textarea id="contextInput" name="context" rows="3" class="w-full bg-gray-50 dark:bg-[#0F1014] border border-gray-300 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 dark:text-white transition-colors" placeholder="e.g. 'Meeting between John and Sarah. Pay special attention to action items relating to Q3 marketing strategy.'"></textarea>
+                </div>
+
+                <div class="mt-8 flex justify-center">
+                    <button type="submit" id="submitBtn" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white px-8 py-3 rounded-xl font-semibold transition-all shadow-lg flex items-center justify-center min-w-[200px]">
+                        <span id="btnText">Upload File</span>
+                        <i id="btnSpinner" class="fa-solid fa-circle-notch fa-spin hidden ml-3"></i>
+                    </button>
+                </div>
+            </form>
+            <div id="statusMessage" class="mt-4 text-center text-sm"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const dropZone = document.getElementById('drop-zone');
+    const fileLabel = document.getElementById('file-label');
+    const form = document.getElementById('uploadForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const statusMessage = document.getElementById('statusMessage');
+
+    dropZone.addEventListener('click', () => fileInput.click());
+    
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            fileLabel.textContent = fileInput.files[0].name;
+            fileLabel.classList.add('text-purple-400');
+        }
+    });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (fileInput.files.length === 0) return;
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        formData.append('context', document.getElementById('contextInput').value);
+
+        btnText.textContent = "Uploading to EchoMind...";
+        btnSpinner.classList.remove('hidden');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70');
+        
+        try {
+            const response = await fetch("{{ url_for('api.upload_file') }}", {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+            
+            if (response.ok) {
+                statusMessage.innerHTML = `<span class="text-green-400">Upload successful! Redirecting...</span>`;
+                window.location.href = "{{ url_for('pages.results') }}";
+            } else {
+                statusMessage.innerHTML = `<span class="text-red-400">Error: ${data.error}</span>`;
+                resetBtn();
+            }
+        } catch (err) {
+            statusMessage.innerHTML = `<span class="text-red-400">Network error occurred.</span>`;
+            resetBtn();
+        }
+    });
+
+    function resetBtn() {
+        btnText.textContent = "Upload File";
+        btnSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-70');
+    }
+</script>
+{% endblock %}

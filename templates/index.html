@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% block title %}EchoMind - Home{% endblock %}
+{% block content %}
+<section class="relative pt-32 pb-20 overflow-hidden text-center bg-brand-light dark:bg-brand-dark transition-colors">
+    <div class="absolute inset-0 bg-hero-gradient opacity-[0.03]"></div>
+    
+    <div class="relative z-10 max-w-5xl mx-auto px-4">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight text-gray-900 dark:text-white">
+            Turn Audio, Video, and Documents into <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">Actionable Insights</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 font-light max-w-3xl mx-auto">
+            EchoMind is a centralized intelligence platform. Upload files and let AI automatically transcribe, summarize, and identify speakers for you. Need more? Chat directly with your documents and audio/video files.
+        </p>
+
+        <div class="flex justify-center gap-4">
+            <a href="{{ url_for('auth.signup') if not current_user.is_authenticated else url_for('pages.upload') }}" class="bg-indigo-600 hover:bg-indigo-500 text-white px-8 py-3.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1">
+                <i class="fa-solid fa-rocket"></i> Get Started
+            </a>
+            <a href="#" target="_blank" class="bg-transparent border-2 border-indigo-600 dark:border-indigo-500 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white px-8 py-3.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all hover:-translate-y-1">
+                <i class="fa-brands fa-youtube text-red-500"></i> See Demo
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-white dark:bg-brand-card border-y border-gray-200 dark:border-white/5 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">Core Platform Features</h2>
+            <p class="text-gray-500 dark:text-gray-400">Everything you need to extract value from unstructured data.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div class="bg-gray-50 dark:bg-[#0F1014] p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg relative overflow-hidden group">
+                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-6 text-purple-600 dark:text-purple-400">
+                    <i class="fa-solid fa-file-arrow-up text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Multi-format Upload</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Accepts audio (MP3, WAV), video (MP4), and documents (TXT, PDF, DOCX) seamlessly.</p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-[#0F1014] p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg">
+                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400">
+                    <i class="fa-solid fa-closed-captioning text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Flawless Transcription</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">High-fidelity transcriptions built natively using transcription models.</p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-[#0F1014] p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg">
+                <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center mb-6 text-emerald-600 dark:text-emerald-400">
+                    <i class="fa-solid fa-users text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Speaker Diarization</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Automatically distinguishes overlapping voices and tracks "Who said what" across long streams.</p>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 dark:bg-[#0F1014] p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg">
+                <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center mb-6 text-amber-600 dark:text-amber-400">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">AI Summarization</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Condense hour long transcripts into persona based summaries effortlessly.</p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-[#0F1014] p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg">
+                <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center mb-6 text-pink-600 dark:text-pink-400">
+                    <i class="fa-solid fa-lightbulb text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Sentiment Analysis</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Detects emotions and opinions across transcripts, identifying positive, negative, or neutral tones.</p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-[#0F1014] p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-lg relative border-emerald-500/50">
+                <div class="absolute top-0 right-0 bg-emerald-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-bl-lg">New</div>
+                <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mb-6 text-indigo-600 dark:text-indigo-400">
+                    <i class="fa-solid fa-comments text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Interactive RAG Q&A</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">An intelligent chat interface allowing you to ask hyper-specific questions against your processed records.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Workflow Section -->
+<section class="py-24 bg-brand-light dark:bg-brand-dark transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">How It Works Step-by-Step</h2>
+            <p class="text-gray-500 dark:text-gray-400">From raw data to actionable intelligence.</p>
+        </div>
+        
+        <div class="relative">
+            <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gray-200 dark:bg-white/10 hidden md:block"></div>
+            
+            <!-- Step 1 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-16">
+                <div class="md:w-5/12 text-right md:pr-8 mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Step 1: Context & File Upload</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Securely upload long-form audio, video, or documents and optionally supply contextual instructions so our AI knows exactly what to look out for.</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold z-10 border-4 border-brand-light dark:border-brand-dark">1</div>
+                <div class="md:w-5/12 text-left md:pl-8 mt-6 md:mt-0">
+                    <div class="bg-gray-50 dark:bg-[#0F1014] p-4 rounded-xl border border-gray-200 dark:border-white/5 inline-block">
+                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-purple-500"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-16">
+                <div class="md:w-5/12 text-left md:pl-8 mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Step 2: High-Fidelity Transcription</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The platform performs a rapid read generating raw verbatim text using transcription models directly.</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold z-10 border-4 border-brand-light dark:border-brand-dark">2</div>
+                <div class="md:w-5/12 text-right md:pr-8 mt-6 md:mt-0">
+                    <div class="bg-gray-50 dark:bg-[#0F1014] p-4 rounded-xl border border-gray-200 dark:border-white/5 inline-block">
+                        <i class="fa-solid fa-file-lines text-3xl text-blue-500"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-16">
+                <div class="md:w-5/12 text-right md:pr-8 mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Step 3: Speaker Diarization</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Our engines cleanly disentangle overlapping voices tracking exact "Who Said What" markers built cleanly inside our WhatsApp-style conversational trackers.</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-cyan-600 text-white flex items-center justify-center font-bold z-10 border-4 border-brand-light dark:border-brand-dark">3</div>
+                <div class="md:w-5/12 text-left md:pl-8 mt-6 md:mt-0">
+                    <div class="bg-gray-50 dark:bg-[#0F1014] p-4 rounded-xl border border-gray-200 dark:border-white/5 inline-block">
+                        <i class="fa-solid fa-users text-3xl text-cyan-500"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between mb-16">
+                <div class="md:w-5/12 text-left md:pl-8 mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Step 4: Summaries & Insights</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Turn hours of discussion into concise persona-based summaries while automatically extracting action items and important decisions.</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold z-10 border-4 border-brand-light dark:border-brand-dark">4</div>
+                <div class="md:w-5/12 text-right md:pr-8 mt-6 md:mt-0">
+                    <div class="bg-gray-50 dark:bg-[#0F1014] p-4 rounded-xl border border-gray-200 dark:border-white/5 inline-block">
+                        <i class="fa-solid fa-lightbulb text-3xl text-emerald-500"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-16">
+                <div class="md:w-5/12 text-right md:pr-8 mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Step 5: Subjective Sentiments</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Unlock behavioral metrics tracking Engagement scores alongside automated keyword mapping catching distinct positive, negative, and neutral shifts.</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold z-10 border-4 border-brand-light dark:border-brand-dark">5</div>
+                <div class="md:w-5/12 text-left md:pl-8 mt-6 md:mt-0">
+                    <div class="bg-gray-50 dark:bg-[#0F1014] p-4 rounded-xl border border-gray-200 dark:border-white/5 inline-block">
+                        <i class="fa-solid fa-chart-pie text-3xl text-amber-500"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="relative flex flex-col md:flex-row-reverse items-center justify-between">
+                <div class="md:w-5/12 text-left md:pl-8 mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Step 6: Chat Interfaces & PDF Export</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Deploy RAG vector integrations searching specifically past discussions interactively before compiling formatted comprehensive reports natively mapped into PDFs.</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold z-10 border-4 border-brand-light dark:border-brand-dark">6</div>
+                <div class="md:w-5/12 text-right md:pr-8 mt-6 md:mt-0">
+                    <div class="bg-gray-50 dark:bg-[#0F1014] p-4 rounded-xl border border-gray-200 dark:border-white/5 inline-block">
+                        <i class="fa-solid fa-file-pdf text-3xl text-indigo-500"></i>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

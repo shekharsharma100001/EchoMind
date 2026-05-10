@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EchoMind - Conversation Intelligence{% endblock %}</title>
+
+    <!-- Tailwind Config and Script -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { 
+                        brand: { dark: '#0B0C10', light: '#f8fafc', card: '#13151A', cardLight: '#ffffff', border: '#2D3748' } 
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #3B82F6 100%)'
+                    }
+                }
+            }
+        }
+        
+        // Prevent theme flicker
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    {% block head %}{% endblock %}
+</head>
+<body class="bg-brand-light dark:bg-brand-dark text-gray-900 dark:text-white antialiased min-h-screen flex flex-col transition-colors">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/90 dark:bg-brand-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-white/5 h-20 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div class="flex justify-between items-center h-full">
+                <a href="{{ url_for('pages.index') }}" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+                        <i class="fa-solid fa-microphone-lines text-white text-xs"></i>
+                    </div>
+                    <span class="font-bold text-xl text-blue-100">EchoMind</span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="{{ url_for('pages.index') }}" class="text-sm font-medium text-gray-800 dark:text-gray-300 hover:text-purple-600 dark:hover:text-white transition-colors">Home</a>
+                    <a href="{{ url_for('pages.about') }}" class="text-sm font-medium text-gray-800 dark:text-gray-300 hover:text-purple-600 dark:hover:text-white transition-colors">About</a>
+                    <a href="{{ url_for('pages.contact') }}" class="text-sm font-medium text-gray-800 dark:text-gray-300 hover:text-purple-600 dark:hover:text-white transition-colors">Contact</a>
+                    {% if current_user.is_authenticated %} 
+                        <a href="{{ url_for('pages.upload') }}" class="text-sm font-medium text-gray-800 dark:text-gray-300 hover:text-purple-600 dark:hover:text-white transition-colors">Upload</a>
+                        <a href="{{ url_for('profile.profile_page') }}" class="text-sm font-medium text-gray-800 dark:text-gray-300 hover:text-purple-600 dark:hover:text-white transition-colors">Profile</a>
+                    {% endif %}
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="themeToggle" class="w-9 h-9 flex items-center justify-center rounded-full text-gray-600 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors">
+                        <i id="themeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+                    {% if current_user.is_authenticated %}
+                        <div class="flex items-center gap-3 mr-4">
+                            {% if current_user.profile_picture %}
+                                {% if current_user.profile_picture.startswith('http') %}
+                                <img src="{{ current_user.profile_picture }}" id="navProfileImage" class="w-8 h-8 rounded-full object-cover border border-purple-500 hidden md:block">
+                                {% else %}
+                                <img src="{{ url_for('static', filename='profile_pictures/' + current_user.profile_picture) }}" id="navProfileImage" class="w-8 h-8 rounded-full object-cover border border-purple-500 hidden md:block">
+                                {% endif %}
+                            {% else %}
+                            <img src="" id="navProfileImage" class="w-8 h-8 rounded-full object-cover border border-purple-500 hidden">
+                            <div id="navProfileInitials" class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 text-white flex items-center justify-center text-xs font-bold hidden md:flex">{{ current_user.username[0] | upper }}</div>
+                            {% endif %}
+                            <div class="text-sm text-gray-500 font-medium">Hi, {{ current_user.username }}!</div>
+                        </div>
+                        <a href="{{ url_for('auth.logout') }}" class="bg-gray-800 hover:bg-gray-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all shadow-md">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Log In</a>
+                        <a href="{{ url_for('auth.signup') }}" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white px-5 py-2 rounded-lg text-sm font-medium transition-all shadow-lg hover:-translate-y-0.5">Sign Up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Flash Messages -->
+    <div class="fixed top-24 left-1/2 -translate-x-1/2 z-50 w-full max-w-md">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="p-4 mb-4 rounded-xl shadow-lg border {% if category == 'error' %}bg-red-900/50 border-red-500{% else %}bg-green-900/50 border-green-500{% endif %} text-white flex justify-between items-center transition-opacity" id="flash-{{ loop.index }}">
+                        <span>{{ message }}</span>
+                        <button onclick="document.getElementById('flash-{{ loop.index }}').style.display='none'" class="text-gray-300 hover:text-white ml-4"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-[#050608] border-t border-gray-300 dark:border-white/5 pt-16 pb-8 mt-auto transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+                            <i class="fa-solid fa-microphone-lines text-white text-xs"></i>
+                        </div>
+                        <span class="font-bold text-xl text-gray-800 dark:text-blue-100">EchoMind</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-500 text-sm mb-6">
+                        Transform conversations, calls, videos, and documents into searchable, structured intelligence using advanced LLM reasoning.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/shekhar100001" class="text-gray-500 hover:text-purple-600 dark:hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/shekharsharma100001" class="text-gray-500 hover:text-purple-600 dark:hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="text-gray-800 dark:text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-500">
+                        <li><a href="{{ url_for('pages.index') }}" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Home</a></li>
+                        <li><a href="{{ url_for('pages.about') }}" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">About</a></li>
+                        <li><a href="{{ url_for('pages.contact') }}" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Contact</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('profile.profile_page') }}" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Profile</a></li>
+                            {% if current_user.is_admin %}
+                            <li><a href="{{ url_for('admin.dashboard') }}" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Admin Dashboard</a></li>
+                            {% endif %}
+                        {% endif %}
+                        <li><a href="{{ url_for('pages.membership') }}" class="hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-semibold">Buy Membership 🚀</a></li>
+                        <li><a href="{{ url_for('pages.team') }}" class="font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-colors mt-2 inline-block"><i class="fa-solid fa-users mr-1"></i> Know More About EchoMind</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="text-gray-800 dark:text-white font-semibold mb-4">Tech Stack</h4>
+                    <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-500">
+                        <li>Transcription Models</li>
+                        <li>Python Flask</li>
+                        <li>Tailwind CSS</li>
+                        <li>MongoDB</li>
+                        <li>JavaScript & Chart.js</li>
+                        <li>Supabase</li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="text-gray-800 dark:text-white font-semibold mb-4">Powered by</h4>
+                    <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-500">
+                        <i class="fa-solid fa-bolt text-yellow-500"></i>
+                        <span>Deepgram Nova 3</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-300 dark:border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                <p>&copy; 2026 EchoMind. All rights reserved.</p>
+                <p class="mt-4 md:mt-0 font-medium">Empowering workflows.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        function updateIcon() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+        
+        updateIcon();
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            updateIcon();
+        });
+    </script>
+</body>
+</html>

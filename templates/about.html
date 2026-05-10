@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}About - EchoMind{% endblock %}
+{% block content %}
+<section class="py-20 relative bg-brand-light dark:bg-brand-dark transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">About EchoMind</h1>
+            <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                EchoMind is an AI-powered conversational intelligence platform built to eliminate the tedious process of manual transcription and meeting analysis. We orchestrate workflows through the power of transcription models and reasoning engines for quick, concise, and meaningful insights.
+            </p>
+        </div>
+
+        <div class="space-y-12">
+            <!-- Problem Statement -->
+            <div class="bg-white dark:bg-brand-card p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 border-b border-gray-100 dark:border-white/5 pb-4">
+                    <i class="fa-solid fa-circle-exclamation text-rose-500 mr-2"></i> Problem Statement
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+                    In modern professional environments, hundreds of hours are spent engaging in online meetings, interviews, and internal strategic discussions. Retaining value from these conversations is famously difficult; attendees resort to manual note-taking which introduces human error, bias, and inevitably loses detailed context when shared via vague summaries. Processing large hour-long video MP4s or complex PDFs manually scales poorly and costs significant capital.
+                </p>
+            </div>
+
+            <!-- Solution -->
+            <div class="bg-white dark:bg-brand-card p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 border-b border-gray-100 dark:border-white/5 pb-4">
+                    <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> Our Solution
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
+                    EchoMind leverages Google's frontier LLM capabilities to automate the entire extraction chain. We engineered a stepwise pipeline: first generating a highly accurate base transcript, then prompting the LLM for speaker diarization (separating individuals by context cues and cadence), and finally retrieving high-value insights formatted systematically into a JSON schema interpreted visually via our frontend UI. Furthermore, the application embeds these outputs into dense vectors, enabling instant semantic searching natively inside the browser context without relying on heavy third-party solutions.
+                </p>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="bg-white dark:bg-brand-card p-8 rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4 border-b border-gray-100 dark:border-white/5 pb-4">
+                    <i class="fa-solid fa-cubes text-purple-500 mr-2"></i> Technologies Used
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Frontend</h3>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 list-disc list-inside">
+                            <li>HTML5 & JavaScript</li>
+                            <li>Tailwind CSS (Utility-first styling)</li>
+                            <li>Fetch API (Asynchronous HTTP)</li>
+                            <li>Chart.js (Metrics visualization)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Backend & Database</h3>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 list-disc list-inside">
+                            <li>Python & Flask</li>
+                            <li>MongoDB (NoSQL Database)</li>
+                            <li>Flask-Login (Session Management)</li>
+                            <li>Werkzeug (Security & Hashing)</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">AI Capabilities</h3>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 list-disc list-inside">
+                            <li><span class="font-medium">Transcription and Reasoning Models:</span> Handling fast text comprehension, complex JSON summarizations, and high context window inferences.</li>
+                            <li><span class="font-medium">Embedding Pipeline:</span> Cosine similarity logic mapping high-dimensional vectors.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Objectives & Future Improvements -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 p-8 rounded-2xl border border-indigo-100 dark:border-indigo-500/20 shadow-xl">
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
+                        <i class="fa-solid fa-bullseye text-indigo-500 mr-2"></i> Objectives
+                    </h2>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-3 list-disc list-inside">
+                        <li>Reduce transcript analysis time by 90%.</li>
+                        <li>Provide absolute privacy through MongoDB Atlas with strict access controls.</li>
+                        <li>Simplify user interactions via guided UI.</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 p-8 rounded-2xl border border-emerald-100 dark:border-emerald-500/20 shadow-xl">
+                    <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
+                        <i class="fa-solid fa-rocket text-emerald-500 mr-2"></i> Future Improvements
+                    </h2>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-3 list-disc list-inside">
+                        <li>Migrating to AWS/GCP for highly distributed scalability.</li>
+                        <li>Adding external Vector Databases (e.g., Pinecone/ChromaDB).</li>
+                        <li>Payment integrations for premium features.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

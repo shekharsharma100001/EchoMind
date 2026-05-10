@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard - EchoMind{% endblock %}
+{% block content %}
+<section class="py-12 md:py-20 relative bg-brand-light dark:bg-brand-dark transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-10 text-center md:text-left">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                <i class="fa-solid fa-users-gear text-purple-600 dark:text-purple-400 mr-2"></i> Admin Dashboard
+            </h1>
+            <p class="text-gray-500 dark:text-gray-400">Manage users and track platform activity.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Active Users Stat -->
+            <div class="bg-white dark:bg-brand-card p-6 rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold uppercase tracking-wider mb-1">Total Users</p>
+                    <h2 class="text-4xl font-black text-gray-900 dark:text-white">{{ active_users_count }}</h2>
+                </div>
+                <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                    <i class="fa-solid fa-users text-2xl text-blue-600 dark:text-blue-400"></i>
+                </div>
+            </div>
+
+            <!-- Documents Stat -->
+            <div class="bg-white dark:bg-brand-card p-6 rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm font-semibold uppercase tracking-wider mb-1">Files Processed</p>
+                    <h2 class="text-4xl font-black text-gray-900 dark:text-white">{{ total_docs }}</h2>
+                </div>
+                <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                    <i class="fa-solid fa-file-invoice text-2xl text-emerald-600 dark:text-emerald-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Data Table -->
+        <div class="bg-white dark:bg-brand-card rounded-2xl border border-gray-200 dark:border-white/5 shadow-xl overflow-hidden">
+            <div class="px-6 py-5 border-b border-gray-200 dark:border-white/5 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">Registered Users</h3>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 dark:bg-[#0F1014] text-gray-600 dark:text-gray-400 text-sm uppercase tracking-wider">
+                            <th class="px-6 py-4 font-semibold border-b border-gray-200 dark:border-white/5">ID</th>
+                            <th class="px-6 py-4 font-semibold border-b border-gray-200 dark:border-white/5">Username</th>
+                            <th class="px-6 py-4 font-semibold border-b border-gray-200 dark:border-white/5">Email</th>
+                            <th class="px-6 py-4 font-semibold border-b border-gray-200 dark:border-white/5">Joined Date</th>
+                            <th class="px-6 py-4 font-semibold border-b border-gray-200 dark:border-white/5 text-center">Docs</th>
+                            <th class="px-6 py-4 font-semibold border-b border-gray-200 dark:border-white/5 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-white/5 transition-all">
+                        {% for stat in user_stats %}
+                        <tr id="user-row-{{ stat.user.id }}" class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                            <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">#{{ stat.user.id }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                {{ stat.user.username }}
+                                {% if stat.user.is_admin %}
+                                    <span class="ml-2 bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 text-xs px-2 py-0.5 rounded-full font-bold">Admin</span>
+                                {% endif %}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">{{ stat.user.email }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">{{ stat.user.created_at.strftime('%Y-%m-%d') }}</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-white font-bold px-3 py-1 rounded-lg text-sm">{{ stat.doc_count }}</span>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {% if not stat.user.is_admin %}
+                                <button onclick="deleteUser({{ stat.user.id }})" class="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors p-2" title="Delete User">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% if not user_stats %}
+                <div class="text-center py-12">
+                    <p class="text-gray-500 dark:text-gray-400">No users found.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<script>
+    async function deleteUser(userId) {
+        if(!confirm("Are you sure you want to completely delete this user? This will also wipe their document records.")) return;
+        
+        try {
+            const res = await fetch(`/admin/delete_user/${userId}`, { method: 'POST' });
+            const data = await res.json();
+            
+            if(res.ok) {
+                document.getElementById(`user-row-${userId}`).remove();
+                alert(data.message);
+            } else {
+                alert(`Error: ${data.error}`);
+            }
+        } catch(err) {
+            alert("Network error.");
+        }
+    }
+</script>
+{% endblock %}
