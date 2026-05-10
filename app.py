@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_login import LoginManager
 from database.db import init_db
+from werkzeug.middleware.proxy_fix import ProxyFix
 import json
 from flask_mail import Mail
 
@@ -13,6 +14,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
     
     # App config
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'default-secret-key-change-in-prod')
