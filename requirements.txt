@@ -1,0 +1,15 @@
+Flask
+pymongo
+Flask-Login
+werkzeug
+python-dotenv
+google-generativeai
+pypdf
+python-docx
+bcrypt
+reportlab
+supabase
+Authlib
+requests
+Flask-Mail
+gunicorn
