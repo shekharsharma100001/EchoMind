@@ -90,6 +90,4 @@ EchoMind is an AI-powered conversational intelligence platform built to eliminat
 - **Enterprise IAM Roles**: Strict permission mapping using OAuth2 workflows over native SQLite user tracking.
 - **Websocket Transcription Streaming**: Removing HTTP wait overhead via continuous Server-Sent-Events formatting.
 
-## Screenshots Section
 
-*(Add your application screenshots here - such as the Dashboard, Analysis Pipeline, and Admin Portal)*
